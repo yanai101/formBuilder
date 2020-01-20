@@ -1,0 +1,30 @@
+.fromBuilder{
+    position: relative;
+    .instruction{
+        font-size: 0.5em;
+        color: var(--info);
+        position: relative;
+        &::after{
+            position: absolute;
+            top:-0px;
+            content: '\01F449';
+            animation: pointerInfo 1s ease-in-out 3 forwards ;
+        }
+
+        @media screen and(max-width:640px){
+            display: block;
+        }
+    }
+    
+    .addFiledBtn{
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}
+
+@keyframes pointerInfo{
+    0%{ transform: translateX(0)}
+    50%{ transform: translateX(50px)}
+    100%{ transform: translateX(0)}
+}

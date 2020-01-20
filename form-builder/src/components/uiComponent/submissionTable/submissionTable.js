@@ -3,12 +3,11 @@ import Table from 'react-bootstrap/Table';
 
 export default function SubmissionsTable({submitData}){
 
-    
-    const tableHeader = submitData.values[0].map(value=>(
-        <th key={value.type}>{value.label}</th>
-        ))
+    const {values} = submitData;
+    const [firstRow] = values;
+    const tableHeader = firstRow.map(value=><th key={value.type}>{value.label}</th>);
         
-    const tableList = submitData.values.map((formsArray, formIndex) =>(
+    const tableList = values.map((formsArray, formIndex) =>(
                         <tr key={formIndex}>
                             { formsArray.map((filedValue, filedIndex)=>{
                                     const keyIndex = `form${formIndex}-${filedIndex}`;

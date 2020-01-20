@@ -1,0 +1,19 @@
+.formContainer{
+    display: grid;
+    grid-template-columns: 70% 20%;
+    grid-gap: 5%;
+    grid-template-areas: "form message";
+    .formArea{
+        grid-area: form
+    }
+    .formMessageArea{
+        grid-area: message
+    }
+    .formMessages{
+        grid-area: form;
+        padding: 5px;
+        li{
+            font-size: 0.75em;
+        }
+    }
+}
