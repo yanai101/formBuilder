@@ -1,0 +1,24 @@
+ version: '2'
+ services:
+    app:
+        container_name: form-builder
+        build:
+            context: ./form-builder-server
+            dockerfile: Dockerfile
+        restart: always
+        build: .
+        environment:
+            MONGO : mongodb://mongo:27017/formBuilder
+        ports: 
+            - '8081:8081'
+        links: 
+            - mongo  
+        volumes:
+           - ./form-builder-server:/usr/src/app                  
+    mongo:
+        container_name: mongo
+        image: mongo
+        ports: 
+            - '27017:27017'        
+
+            

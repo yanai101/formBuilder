@@ -1,0 +1,33 @@
+.builderFormGroup{
+    position: relative;
+    .removeFiledBtn{
+        position: absolute;
+        right: 0px;
+        top: 5px;
+        display: none;
+        font-size: 30px;
+        color:red;
+        cursor: pointer;
+    }
+    @media screen and(max-width: 650px){
+        .removeFiledBtn{
+            display: block;
+        }
+        .intro{
+            display: none;
+        }
+    }
+    &:hover{
+        .removeFiledBtn{
+            display: block;
+        }
+    }
+}
+
+.intro{
+    display: inline-block;
+    font-weight: bold;
+    @media screen and(max-width: 650px){
+        display: none;
+    }
+}

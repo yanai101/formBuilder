@@ -1,0 +1,11 @@
+.formBuilderModal{
+    p{
+        display: flex;
+        label{
+            width: 30%;
+            @media screen and(max-width:640px){
+                width: 40%;
+            }
+        }
+    }
+}
