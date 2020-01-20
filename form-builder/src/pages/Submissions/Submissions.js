@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { API_URL } from '../../config/config';
-import SubmissiomTable from '../../components/uiComponent/submissionTable/submissionTable';
+import SubmissionsTable from '../../components/uiComponent/submissionTable/submissionTable';
 import Alert from 'react-bootstrap/Alert';
 
 
@@ -10,17 +10,17 @@ export default function Submissions({match}){
     const [loadingError , setLoadingError]= useState(false);
 
     useEffect(()=>{
-         const featcSubmitData = async ()=>{
+         const getSubmitData = async ()=>{
              const result = await fetch(`${API_URL}/submissions/${match.params.id}`)
                             .catch(error=>{
                                 setLoadingError(error.msg)
                             })
-            const submitionData = await result.json();   
+            const submissionData = await result.json();   
             setLoading(false);
-            setSubmitData(submitionData);
+            setSubmitData(submissionData);
          }
 
-         featcSubmitData();
+         getSubmitData();
     },[match.params.id])
 
     return(
@@ -29,7 +29,7 @@ export default function Submissions({match}){
             {loading && 'loading' }
             {
                 submitData && 
-                <SubmissiomTable submitData={submitData}/>
+                <SubmissionsTable submitData={submitData}/>
             }
             {loadingError && <Alert variant="warning">{loadingError}</Alert>}
         </div>

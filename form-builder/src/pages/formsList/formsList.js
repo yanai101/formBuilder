@@ -7,8 +7,8 @@ import Spinner from 'react-bootstrap/Spinner';
 export default function FromList(){
     
     const [forms ,setForms] = useState([]);
-    const [loading ,setLaoding] = useState(true);
-    const [loadingError, setLoddingError] = useState();
+    const [loading ,setLoading] = useState(true);
+    const [loadingError, setLodgingError] = useState();
 
     useEffect(()=>{
         async function fetchFormList(){
@@ -16,10 +16,10 @@ export default function FromList(){
                 const response = await fetch(`${API_URL}/submissions`);
                 const data = await response.json();
                 setForms(data);
-                setLaoding(false);
+                setLoading(false);
             } catch (error) {
-                setLoddingError(error.msg);
-                setLaoding(false);
+                setLodgingError(error.msg);
+                setLoading(false);
             }
         }
        fetchFormList();

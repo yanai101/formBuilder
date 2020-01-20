@@ -10,10 +10,10 @@ import { API_URL } from '../../config/config';
 
 export default function FromBuilder({history}){
     const [showFiledModal, setShowFiledModal] = useState(false);
-    const [showFormNaneModal, setShowFormNaneModal] = useState(false);
+    const [showFormNameModal, setShowFormNameModal] = useState(false);
     const [formName , setFormName] = useState('');
     const [formError, setFormError] = useState(null);
-    const [fields, setfields] = useState([]);
+    const [fields, setFields] = useState([]);
 
     
     function toggleVisible(){
@@ -21,11 +21,11 @@ export default function FromBuilder({history}){
     }
 
     function publishForm(){
-        setShowFormNaneModal(true);
+        setShowFormNameModal(true);
     }
 
-    function hideFromNameModeal(submitForm = true){
-        setShowFormNaneModal(false);
+    function hideFromNameModel(submitForm = true){
+        setShowFormNameModal(false);
         submitForm && submitNewForm();
     }
 
@@ -60,12 +60,16 @@ export default function FromBuilder({history}){
 
     return(
         <div className={style.fromBuilder}>
-            <h2>{formName ||  <span>Build your's form <small>Press the + button to add fields</small></span>}</h2>
-            {formError && <Alert variant={formError.variant} show={formError.msg.length > 0}>{formError.msg}</Alert>}
+            <h2>{formName ||  <span>Build yours form <small className={style.instruction}>Press the + button to add fields</small></span>}</h2>
+            { formError && 
+                <Alert variant={formError.variant} show={formError.msg.length > 0}>{formError.msg}</Alert>
+            }
             <Button  className={style.addFiledBtn} variant="success" onClick={toggleVisible} title="Add new filed">+</Button>
-            <AddFiledModal show={showFiledModal} toggleVisible={toggleVisible} fields={fields} setfields={setfields}/>
-            {fields.length > 0 && <FromViewer fields={fields} setfields={setfields} viewMode={true} onSubmit={publishForm}/>}
-            <FormNameModal show={showFormNaneModal} setFormName={setFormName} formName={formName} hideFromNameModeal={hideFromNameModeal}/>
+            <AddFiledModal show={showFiledModal} toggleVisible={toggleVisible} fields={fields} setFields={setFields}/>
+            {fields.length > 0 &&
+             <FromViewer fields={fields} setFields={setFields} viewMode={true} onSubmit={publishForm}/>
+            }
+            <FormNameModal show={showFormNameModal} setFormName={setFormName} formName={formName} hideFromNameModel={hideFromNameModel}/>
         </div>
     )
 

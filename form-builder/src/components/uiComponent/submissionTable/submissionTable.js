@@ -1,10 +1,10 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 
-export default function SubmissiomTable({submitData}){
+export default function SubmissionsTable({submitData}){
 
     
-    const tableHEader = submitData.values[0].map(value=>(
+    const tableHeader = submitData.values[0].map(value=>(
         <th key={value.type}>{value.label}</th>
         ))
         
@@ -24,7 +24,7 @@ return(
     <Table striped hover responsive> 
         <thead>
             <tr>
-                {tableHEader}
+                {tableHeader}
             </tr>
         </thead>
         <tbody>

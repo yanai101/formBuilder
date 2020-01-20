@@ -6,14 +6,14 @@ import './formBuilderModal.scss'
 
 const fieldsTypes = ['Text', 'Color', 'Date', 'Email', 'Tel', 'Number'];
 
-export default function AddFiledModal({show ,toggleVisible , fields, setfields}) {
+export default function AddFiledModal({show ,toggleVisible , fields, setFields}) {
 
   const [formError, setError] = useState('');
   const inputType = useRef(null);
   const inputLabel = useRef(null);
   const inputName = useRef(null);
 
-  function Resetfields(){
+  function resetFields(){
     inputType.current.value = 'text';
     inputLabel.current.value ='';
     inputName.current.value = '';
@@ -45,15 +45,15 @@ export default function AddFiledModal({show ,toggleVisible , fields, setfields})
         const validForm = isInputsFormValid(type, label, name);
 
         if(validForm){
-           const newfields = [...fields , {type , label , name}] 
-           setfields(newfields);
-           Resetfields(); 
+           const newFields = [...fields , {type , label , name}] 
+           setFields(newFields);
+           resetFields(); 
         }    
     }
   
     return (
       <>  
-        <Modal show={show} onHide={Resetfields}>
+        <Modal show={show} onHide={resetFields}>
           <Modal.Header>
             <Modal.Title>Add form fields </Modal.Title>
           </Modal.Header>

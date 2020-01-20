@@ -17,7 +17,7 @@ export default function From({match , history}){
     const [form, setForm] = useState(null);
     const [loading, setLoading] = useState(true);
     const [fields , setFields] = useState([]);
-    const [fromMassage , setFormMeassage] = useState([]);
+    const [fromMassage , setFormMessages] = useState([]);
 
     useEffect(()=>{
         async function fetchForm(){
@@ -36,14 +36,14 @@ export default function From({match , history}){
     },[match.params.id])
     
 
-    function checkFileds(){
-        setFormMeassage([]);
+    function checkFields(){
+        setFormMessages([]);
         massagesArray = [];
         fields.map(field=>{
-            field.value = ValidateAndEsacpeInput(field.type , field.value)
+            field.value = ValidateAndEscapeInput(field.type , field.value)
             return field;
         })
-        setFormMeassage(massagesArray);
+        setFormMessages(massagesArray);
         if(massagesArray.length === 0){
             submitForm();
         }
@@ -64,7 +64,7 @@ export default function From({match , history}){
             },
             body: JSON.stringify(formSubmit)
         }).catch((error)=>{
-            setFormMeassage([error.msg])
+            setFormMessages([error.msg])
         });
 
         if(response.status === 200){
@@ -73,7 +73,7 @@ export default function From({match , history}){
 
     }
 
-    function ValidateAndEsacpeInput(type, value){
+    function ValidateAndEscapeInput(type, value){
         switch (type) {
             case 'email':
                 if(value && isEmail(value)){
@@ -124,7 +124,7 @@ export default function From({match , history}){
                         </Alert>
                     </div>
                 }
-                {fields.length > 0 && <div className="formArea"><FromViewer fields={fields} setfields={setFields} onSubmit={checkFileds} /></div> }
+                {fields.length > 0 && <div className="formArea"><FromViewer fields={fields} setFields={setFields} onSubmit={checkFields} /></div> }
             </div>
 
         </div>

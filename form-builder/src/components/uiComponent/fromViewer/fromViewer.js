@@ -5,26 +5,26 @@ import {debounce} from '../../../utils/utilsFunctions';
 import {MdHighlightOff} from 'react-icons/md'
 import './formView.scss'
 
-export default function FromViewer({fields , setfields , viewMode= false , onSubmit , disableForm = false}){
+export default function FromViewer({fields , setFields , viewMode= false , onSubmit , disableForm = false}){
 
     function removeFiled(e){
-        const newfields = fields.filter( item => item.name !== e.currentTarget.previousElementSibling.id)
-        setfields(newfields);
+        const newFields = fields.filter( item => item.name !== e.currentTarget.previousElementSibling.id)
+        setFields(newFields);
     }
 
-    const changeHendler = debounce((value, name)=>{
-        const newfields =  fields.map(filed=> {
+    const changeHandler = debounce((value, name)=>{
+        const newFields =  fields.map(filed=> {
             if(filed.name === name){
                 filed.value = value;
             }
             return filed;
         })  
-        setfields(newfields);
+        setFields(newFields);
     }, 500) 
     
     return(
         <>
-            {viewMode && <small>You'r in preview mode <em className="intro">- hover the filed for remove</em></small>}
+            {viewMode && <small>you're in preview mode <em className="intro">- hover the filed for remove</em></small>}
             <Form>
                 {
                     fields.map( ({name , label, type , value = null})=> 
@@ -36,7 +36,7 @@ export default function FromViewer({fields , setfields , viewMode= false , onSub
                                 name={name} 
                                 defaultValue={value} 
                                 disabled={viewMode} 
-                                onChange={(e)=>changeHendler(e.target.value, e.target.id)}
+                                onChange={(e)=>changeHandler(e.target.value, e.target.id)}
                             />
                             {viewMode && <MdHighlightOff className="removeFiledBtn" onClick={removeFiled}/>}
                         </Form.Group>

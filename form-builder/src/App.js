@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './components/layoutComponant/header'
+import Header from './components/layoutComponents/header'
 import style from './app.module.scss';
 import {  BrowserRouter as Router , Route, Switch } from 'react-router-dom';
 import FromList from './pages/formsList/formsList';

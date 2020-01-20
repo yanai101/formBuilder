@@ -3,15 +3,15 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 
-export default function FormNameModal({show ,hideFromNameModeal , setFormName , fromName='' }) {
+export default function FormNameModal({show ,hideFromNameModel , setFormName , fromName='' }) {
 
     function closeModal(){
-      hideFromNameModeal(false)
+      hideFromNameModel(false)
     } 
     
     return (
       <>  
-        <Modal show={show} onHide={hideFromNameModeal}>
+        <Modal show={show} onHide={hideFromNameModel}>
           <Modal.Header>
             <Modal.Title>Please add form name </Modal.Title>
           </Modal.Header>
@@ -22,7 +22,7 @@ export default function FormNameModal({show ,hideFromNameModeal , setFormName , 
             <Button variant="secondary" onClick={closeModal}>
               Close
             </Button>
-            <Button variant="primary" onClick={hideFromNameModeal} disabled={fromName.length}>
+            <Button variant="primary" onClick={hideFromNameModel} disabled={fromName.length}>
               Submit
             </Button>
           </Modal.Footer>
