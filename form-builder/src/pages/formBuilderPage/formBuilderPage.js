@@ -50,7 +50,7 @@ export default function FromBuilderPage({history}) {
     return(
         <div className={style.fromBuilder}>
             <h2>{formName ||  <span>Build yours form <small className={style.instruction}>Press the + button to add fields</small></span>}</h2>
-            { formError && 
+            { formError && formError.msg &&
                 <Alert variant={formError.variant} show={formError.msg.length > 0}>{formError.msg}</Alert>
             }
             <Button  className={style.addFiledBtn} variant="success" onClick={toggleFieldModal} title="Add new field">+</Button>

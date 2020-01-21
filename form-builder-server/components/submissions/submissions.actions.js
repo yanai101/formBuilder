@@ -11,7 +11,6 @@ exports.add_submissions = async (req, res, next) => {
     
     }catch(error){
         console.log(error)
-        debugger
         res.sendStatus(500).json(error);
         res.end() 
     }

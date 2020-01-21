@@ -21,8 +21,8 @@ export async function addFormRequest(formData, successCb , errorCb , finlayCb){
                 },
                 body: JSON.stringify(formData)
         });
-        const response = await addFormRequest.json()
-        response.status !== 200 ? errorCb(response.msg): successCb();  
+        const response = await addFormRequest.json();
+        addFormRequest.status !== 200 ? errorCb(response.msg): successCb();  
     } catch (error) {
         errorCb(error.msg);
     } finally {

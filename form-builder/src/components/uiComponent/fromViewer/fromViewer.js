@@ -17,7 +17,7 @@ export default function FromViewer({fields , setFields , viewMode= false , onSub
     const changeHandler = debounce((value, name, objectKey)=>{
         fieldSetObj[objectKey].value = value;
         setFields(Object.values(fieldSetObj));
-    }, 500) 
+    }, 50) 
     
     return(
         <>
