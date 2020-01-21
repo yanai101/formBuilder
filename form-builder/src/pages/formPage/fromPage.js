@@ -1,5 +1,5 @@
 import React, {useEffect, useState}  from 'react';
-import { API_URL, FIELDS_TYPE } from '../../config/config';
+import {FIELDS_TYPE } from '../../config/config';
 import Spinner from 'react-bootstrap/Spinner';
 import FromViewer from '../../components/uiComponent/fromViewer/fromViewer';
 import isEmail from 'validator/lib/isEmail';
@@ -10,6 +10,7 @@ import escape from 'validator/lib/escape';
 import Alert from 'react-bootstrap/Alert';
 
 import './from.scss';
+import { fetchForm, fetchFormSubmit } from '../../utils/apiManager';
 
 let invalidMessages = [];
 
@@ -21,19 +22,11 @@ export default function From({match , history}){
     const [invalidFormMessages , setFormMessages] = useState([]);
 
     useEffect(()=>{
-        async function fetchForm(){
-            try {
-                const response = await fetch(`${API_URL}/forms/${match.params.id}`);
-                const formData = await response.json();
-                setLoading(false);
-                setForm(formData);
-                setFields(formData.fields);
-            } catch (error) {
-                setErrorMessage(error.msg)
-            }
-        }
-
-        fetchForm();
+        fetchForm(match.params.id , (formData)=>{
+            setLoading(false);
+            setForm(formData);
+            setFields(formData.fields);
+        }, setErrorMessage)
     },[match.params.id])
     
 
@@ -57,21 +50,7 @@ export default function From({match , history}){
             formId: _id,
             fields
         }
-      
-        const response =  await fetch(`${API_URL}/submissions/`,{
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formSubmit)
-        }).catch((error)=>{
-            setFormMessages([error.msg])
-        });
-
-        if(response.status === 200){
-            history.push('/')
-        }
-
+        fetchFormSubmit(formSubmit, ()=> history.push('/'), setFormMessages )
     }
 
   

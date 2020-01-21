@@ -6,7 +6,7 @@ import Alert from 'react-bootstrap/Alert';
 
 import style from './formBuilder.module.scss';
 import FormNameModal from '../../components/uiComponent/formNameModal/formNameModal';
-import { API_URL } from '../../config/config';
+import { addFormRequest } from '../../utils/apiManager';
 
 export default function FromBuilderPage({history}) {
     const [showFieldModal, setShowFieldModal] = useState(false);
@@ -44,18 +44,7 @@ export default function FromBuilderPage({history}) {
             fields
         }
         setFormError(null);
-        // TODO add try block
-       const addFormRequest = await fetch(`${API_URL}/forms`,{
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newForm)
-       })
-       const response = await addFormRequest.json()
-
-       // TODO move all this line to function 
-       addFormRequest.status !== 200 ?  setFormError({variant:'danger', msg:response.msg}): history.push('/'); 
+        addFormRequest(newForm, ()=> history.push('/') , (msg)=> setFormError({variant:'danger', msg}))
     }
 
     return(
